@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build": "esbuild app.js --bundle --platform=node --target=node10.4 --outfile=main.js",
-    "start": "npm run build && node main.js",
+  "scripts": { 
+    "build": "esbuild app.js --bundle --platform=node --target=node10.4 --outfile=server.js",
+    "prestart": "npm install && npm run build",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
