@@ -1,43 +1,22 @@
 [
     {
-      "quote": "Talk is cheap. Show me the code.",
-      "author": "Linus Torvalds"
+      "quote": "One of the best programming skills you can have is knowing when to walk away for awhile.",
+      "author": "Oscar Godson"
     },
     {
-      "quote": "Programs must be written for people to read, and only incidentally for machines to execute.",
+      "quote": "Programs must be written for people to read, and only incidentally for machines to execute. - What will the code look like when read by a human? Can you understand it? Does it communicate its intent clearly?",
       "author": "Harold Abelson"
     },
     {
-      "quote": "First, solve the problem. Then, write the code.",
-      "author": "John Johnson"
-    },
-    {
-      "quote": "Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.",
-      "author": "Antoine de Saint-Exupery"
-    },
-    {
-      "quote": "Code is like humor. When you have to explain it, it's bad.",
+      "quote": "Code is like humor. When you have to explain it, it’s bad. - Writing clean, self-explanatory code is an art. Good code communicates its purpose without the need for extensive comments or explanations.",
       "author": "Cory House"
     },
     {
-      "quote": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      "author": "Martin Fowler"
+      "quote": "The most important property of a program is whether it accomplishes the intention of its user. - Ultimately, a successful program is one that fulfills its purpose and satisfies the needs of its users.",
+      "author": "C.A.R. Hoare"
     },
     {
-      "quote": "It's not a bug, it's an undocumented feature.",
+      "quote": "Software, like a gas, expands to fill its container. - Without clear design and architecture, software systems tend to become overly complex and difficult to maintain.",
       "author": "Anonymous"
-    },
-    {
-      "quote": "The best error message is the one that never shows up.",
-      "author": "Thomas Fuchs"
-    },
-    {
-      "quote": "In software, the most beautiful code is the one that never gets written.",
-      "author": "Keith Braithwaite"
-    },
-    {
-      "quote": "The best performance improvement is the transition from the nonworking state to the working state.",
-      "author": "John Ousterhout"
     }
-  ]
-  
+  ]  
