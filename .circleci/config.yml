@@ -79,6 +79,7 @@ workflows:
             - build
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          executor: amd64
           platform: linux/amd64
           public-registry: true
           region: '${AWS_REGION}'
