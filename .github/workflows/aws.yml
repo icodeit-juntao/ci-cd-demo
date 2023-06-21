@@ -31,12 +31,12 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: ${{ env.MY_AWS_REGION }}
-  ECR_REPOSITORY: ${{ env.MY_ECR_REPOSITORY }}
-  ECS_SERVICE: ${{ env.MY_ECS_SERVICE }}
-  ECS_CLUSTER: ${{ env.MY_ECS_CLUSTER }}
-  ECS_TASK_DEFINITION: ${{ env.MY_ECS_TASK_DEFINITION }}
-  CONTAINER_NAME: ${{ env.MY_CONTAINER_NAME }}
+  AWS_REGION: us-west-1
+  ECR_REPOSITORY: icodeit
+  ECS_SERVICE: icodeit-quotes
+  ECS_CLUSTER: devcluster
+  ECS_TASK_DEFINITION: .aws/task-def.json
+  CONTAINER_NAME: icodeit-quotes
 
 permissions:
   contents: read
