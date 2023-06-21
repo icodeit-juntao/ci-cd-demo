@@ -32,7 +32,7 @@ on:
 
 env:
   ECR_REPO_REGION: us-east-1
-  AWS_REGION: ap-southeast-2
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: h6k2g2l3/icodeit
   ECS_SERVICE: icodeit-quotes
   ECS_CLUSTER: devcluster
