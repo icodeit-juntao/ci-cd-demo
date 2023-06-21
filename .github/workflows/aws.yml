@@ -33,7 +33,7 @@ on:
 env:
   AWS_DEFAULT_REGION: us-east-1
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: icodeit
+  ECR_REPOSITORY: h6k2g2l3/icodeit
   ECS_SERVICE: icodeit-quotes
   ECS_CLUSTER: devcluster
   ECS_TASK_DEFINITION: .aws/task-def.json
