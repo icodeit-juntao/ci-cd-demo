@@ -31,7 +31,7 @@ on:
     branches: [ "main" ]
 
 env:
-  ECR_REPO_REGION: us-east-1
+  ECR_REPO_REGION: ap-southeast-2
   AWS_REGION: us-east-1
   ECR_REPOSITORY: h6k2g2l3/icodeit
   ECS_SERVICE: icodeit-quotes
@@ -82,7 +82,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
       with:
         registry-type: public
-        aws-region: ${{ env.ECR_REPO_REGION }}
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
@@ -113,4 +113,4 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ env.ECR_REPO_REGION }}
