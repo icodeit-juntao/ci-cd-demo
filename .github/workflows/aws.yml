@@ -61,10 +61,10 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  deploy-production:
+  deploy-staging:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    environment: staging
 
     steps:
     - name: Checkout
