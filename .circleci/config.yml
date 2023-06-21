@@ -55,6 +55,8 @@ orbs:
 
 jobs:
   build:
+    machine:
+      image: ubuntu-2204:2023.02.1  
     docker:
       - image: cimg/node:14.18.2
     steps:
