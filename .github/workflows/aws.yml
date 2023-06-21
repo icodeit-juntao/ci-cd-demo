@@ -31,6 +31,7 @@ on:
     branches: [ "main" ]
 
 env:
+  AWS_DEFAULT_REGION: us-east-1
   AWS_REGION: ap-southeast-2
   ECR_REPOSITORY: h6k2g2l3/icodeit
   ECS_SERVICE: icodeit-quotes
@@ -79,9 +80,10 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+      env: 
+        AWS_REGION: us-east-1
       with:
         registry-type: public
-        aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
