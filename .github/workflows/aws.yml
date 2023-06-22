@@ -8,10 +8,10 @@ env:
   AWS_DEFAULT_REGION: us-east-1
   AWS_REGION: ap-southeast-2
   ECR_REPOSITORY: h6k2g2l3/icodeit
-  ECS_SERVICE: icodeit-quotes
+  ECS_SERVICE: quotes-service
   ECS_CLUSTER: devcluster
   ECS_TASK_DEFINITION: .aws/task-def.json
-  CONTAINER_NAME: icodeit-quotes
+  CONTAINER_NAME: quotes-service
 
 permissions:
   contents: read
