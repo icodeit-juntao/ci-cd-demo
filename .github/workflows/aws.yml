@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECS
+name: Deploy Quotes to Amazon ECS
 
 on:
   push:
@@ -12,6 +12,7 @@ env:
   ECS_CLUSTER: devcluster
   ECS_TASK_DEFINITION: .aws/task-def.json
   CONTAINER_NAME: quotes-service
+  DOCKER_IMAGE: public.ecr.aws/h6k2g2l3/icodeit:latest
 
 permissions:
   contents: read
@@ -32,13 +33,31 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm test
+      - run: npm run compile
 
-  deploy-staging:
-    name: Deploy
+  tests:
+    name: End to End Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
+      - run: echo "integration tests..."
+
+  packaging:
+    name: Packaging
     runs-on: ubuntu-latest
     environment: staging
-    needs: build
+    needs: tests
 
     steps:
     - name: Checkout
@@ -72,13 +91,43 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: packaging
+
+    steps:
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ env.DOCKER_IMAGE }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+    needs: packaging
+
+    steps:
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ env.DOCKER_IMAGE }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
